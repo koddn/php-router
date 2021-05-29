@@ -1,0 +1,36 @@
+{
+    "name": "koddn/php-router",
+    "type": "library",
+    "description": "Koddn PHP Router - simple router created for custom PHP Applications, CMS, REST API's with multiple callbacks, middleware",
+    "license": "MIT",
+    "authors":[
+       { "name":"harpal Singh",
+        "email": "singh.harpalkhl@gmail.com",
+         "role": "Developer"
+        }
+
+    ],
+    "require" : {
+      "php" : ">=5.6"
+    },
+    "minimum-stability": "stable",
+    "homepage": "https://koddn.com",
+    "keywords": [
+      "router",
+      "route",
+      "routing",
+      "node like router in php",
+      "koddn router",
+      "auth validator router",
+      "Koddn technologies",
+      "router with next",
+      "API router for php",
+      "php",
+      "express like router"
+
+    ],
+    
+    "autoload":{
+        "psr-4": {"KODDN\\": "src/"}
+    }
+}
