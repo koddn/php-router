@@ -11,21 +11,20 @@
 
     ],
     "require" : {
-      "php" : ">=5.6"
+      "php" : ">=7.4"
     },
     "minimum-stability": "stable",
     "homepage": "https://koddn.com",
     "keywords": [
       "router",
-      "route",
-      "routing",
+      "route in php",
+      "routing in php",
       "node like router in php",
-      "koddn router",
+      "koddn php router",
       "auth validator router",
-      "Koddn technologies",
       "router with next",
       "API router for php",
-      "php",
+      "php", "php7", "auth router",
       "express like router"
 
     ],

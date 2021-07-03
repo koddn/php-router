@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInit177b3f15ba217793e837a2d365c03511
+class ComposerStaticInit648f7c2dbddf631acb5f47d929d31afa
 {
     public static $prefixLengthsPsr4 = array (
         'K' => 
@@ -22,15 +22,16 @@ class ComposerStaticInit177b3f15ba217793e837a2d365c03511
 
     public static $classMap = array (
         'KODDN\\ROUTER' => __DIR__ . '/../..' . '/src/ROUTER.php',
+        'KODDN\\ROUTER_REQUEST' => __DIR__ . '/../..' . '/src/ROUTER.php',
         'KODDN\\ROUTER_RESPONSE' => __DIR__ . '/../..' . '/src/ROUTER.php',
     );
 
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInit177b3f15ba217793e837a2d365c03511::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInit177b3f15ba217793e837a2d365c03511::$prefixDirsPsr4;
-            $loader->classMap = ComposerStaticInit177b3f15ba217793e837a2d365c03511::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit648f7c2dbddf631acb5f47d929d31afa::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit648f7c2dbddf631acb5f47d929d31afa::$prefixDirsPsr4;
+            $loader->classMap = ComposerStaticInit648f7c2dbddf631acb5f47d929d31afa::$classMap;
 
         }, null, ClassLoader::class);
     }

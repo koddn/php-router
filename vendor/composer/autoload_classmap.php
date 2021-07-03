@@ -7,5 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'KODDN\\ROUTER' => $baseDir . '/src/ROUTER.php',
+    'KODDN\\ROUTER_REQUEST' => $baseDir . '/src/ROUTER.php',
     'KODDN\\ROUTER_RESPONSE' => $baseDir . '/src/ROUTER.php',
 );

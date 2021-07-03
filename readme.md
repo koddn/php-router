@@ -12,7 +12,7 @@ Social Media Koddn:
 Social Media Developer:
 [Facebook](https://www.facebook.com/HarpalSingh11/), [Twitter](https://twitter.com/Harpalsingh_11), [Instagram](https://www.instagram.com/harpal.singh11/)
 
-#Features
+# Features
 
 * Manages Routing, get, post, put, delete, any - others
 * Redirect pages
@@ -22,12 +22,22 @@ Social Media Developer:
 * Send Responses, JSON, TEXT
 * Set header status
 * Express like router in PHP
+* Fast route in PHP
+* Can be used as Auth Validator
+
+# Install
+
+To install with composer:
+
+```cli
+composer require koddn/php-router
+```
 
 # Usage
 
 Get the Koddn Php Router
 
-```injectablephp
+```php
 // composer auto loader
 require __DIR__ . '/vendor/autoload.php';
 
@@ -45,7 +55,7 @@ ROUTER::get('/',function($req,$res,$next){
 
 Simply add src/KODDN_ROUTER.php file in your project;
 
-```injectablephp
+```php
 // composer auto loader
 require __DIR__ . '/src/KODDN_ROUTER.php';
 
@@ -68,7 +78,7 @@ You can use patterns to match the request
 
 In the below example we are capturing user id from the url
 
-```injectablephp
+```php
 // URL => /api/user/111
 
 ROUTER::get('/api/user/:id',function($req,$res){
@@ -81,7 +91,7 @@ ROUTER::get('/api/user/:id',function($req,$res){
 
 In the example we are capturing using
 
-```injectablephp
+```php
 // URL => /flight/india-usa
 
 ROUTER::get('/flight/:from-:to',function($req,$res){
@@ -93,7 +103,7 @@ ROUTER::get('/flight/:from-:to',function($req,$res){
 });
 ```
 
-```injectablephp
+```php
 // URL => /post-name-apc/123
 ROUTER::get('/*/:postID',function($req,$res){
     
@@ -108,7 +118,7 @@ ROUTER::get('/*/:postID',function($req,$res){
 
 We can use multiple callback functions to handle the route
 
-```injectablephp
+```php
 ROUTER::get('/some-url', function($req,$res,$next){
 
     // Do something here
@@ -127,7 +137,7 @@ ROUTER::get('/some-url', function($req,$res,$next){
 
 Also, if we want the edited request to be referenced in next callback then use &$req as request parameter
 
-```injectablephp
+```php
 ROUTER::get('/dashboard', function(&$req,$res,$next){
 
     // if user authorized
@@ -144,9 +154,33 @@ ROUTER::get('/dashboard', function(&$req,$res,$next){
 
 ```
 
+# Middleware 
 Sample how we can use it as middleware for authentication
 
-```injectablephp
+Middlewares can be implemented using "use" method
+
+```php
+ROUTER::use('/user',function($req,$res,$next){
+   
+             ROUTER::get('/me', function ($req, $res, $next) {
+                           
+            // do something here
+                        });
+        });
+
+
+
+// OR
+ROUTER::use('/user',function($req,$res,$next){
+   
+        require __DIR__."/routes/user.php"; //
+});
+
+```
+
+
+
+```php
 ROUTER::post('/login', function(&$req,$res,$next){
 
     // do the authorize stuff here
@@ -167,7 +201,7 @@ ROUTER::post('/login', function(&$req,$res,$next){
 
 # Redirect
 
-```injectablephp
+```php
 //ROUTER::redirect('/url-to-match', callbackBeforeRedirect, 'redirect to url', $replaceHeaders=false (optional), $redirectCode =301 (optional));
 ROUTER::redirect('/url-to-match', function(){/*do some logs*/}, '/new-url', $replaceHeaders =false/*( boolean optional)*/, $redirectCode=301 /*(int optional)*/);
 ```
@@ -176,7 +210,7 @@ ROUTER::redirect('/url-to-match', function(){/*do some logs*/}, '/new-url', $rep
 
 With Koddn PHP router either you can manually handle responses, or you can use the built-in ones.
 
-```injectablephp
+```php
 ROUTER::post('/about', function($req,$res,$next){
  $res->send("About us");
 });
@@ -184,7 +218,7 @@ ROUTER::post('/about', function($req,$res,$next){
 
 ## Send JSON data
 
-```injectablephp
+```php
 ROUTER::post('/api/user', function($req,$res,$next){
     $userData=['name'=>"Harpal Singh", 'id'=>11];
      $res->json($userData);
@@ -193,7 +227,7 @@ ROUTER::post('/api/user', function($req,$res,$next){
 
 ## Set Header Status Codes
 
-```injectablephp
+```php
 ROUTER::post('/api/user', function($req,$res,$next){
   
      $res->setStatus(404)->send('Not Found');
@@ -202,7 +236,7 @@ ROUTER::post('/api/user', function($req,$res,$next){
 
 ### Clear cookies
 
-```injectablephp
+```php
 ROUTER::post('/api/user', function($req,$res,$next){
      // clear all cookies
      $res->clearCookies();
@@ -217,7 +251,7 @@ ROUTER::post('/api/user', function($req,$res,$next){
 
 ### Clear cookies
 
-```injectablephp
+```php
 ROUTER::post('/api/user', function($req,$res,$next){
     // clear Sessions
      $res->clearSession();
@@ -231,7 +265,7 @@ ROUTER::post('/api/user', function($req,$res,$next){
 
 It is similar to die();
 
-```injectablephp
+```php
 ROUTER::post('/api/user', function($req,$res,$next){
     // clear Sessions
      $res->end();
@@ -242,7 +276,7 @@ ROUTER::post('/api/user', function($req,$res,$next){
 
 ### Redirect using Response
 
-```injectablephp
+```php
 //ROUTER::redirect('redirect to url', $replaceHeaders=false (optional), $redirectCode =301 (optional));
 ROUTER::post('/api/user', function($req,$res,$next){
     // clear Sessions
@@ -254,7 +288,7 @@ ROUTER::post('/api/user', function($req,$res,$next){
 
 # ALL Functions
 
-```injectablephp
+```php
 ROUTER::any('/url-to-match',function(&$req,$res,$next){}/*, function(&$req,$res,$next){}*/);
 ROUTER::post('/url-to-match',function(&$req,$res,$next){}/*, function(&$req,$res,$next){}*/);
 ROUTER::get('/url-to-match',function(&$req,$res,$next){}/*, function(&$req,$res,$next){}*/);
@@ -263,7 +297,7 @@ ROUTER::delete('/url-to-match',function(&$req,$res,$next){}/*, function(&$req,$r
 ROUTER::redirect('/url-to-match', function(){/*do some logs*/}, '/new-url', $replaceHeaders =false/*( boolean optional)*/, $redirectCode=301 /*(int optional)*/);
 ```
 
-```injectablephp
+```php
 
 ROUTER::post('/url-to-match',function(&$req,$res,$next){
 //
@@ -272,7 +306,7 @@ ROUTER::post('/url-to-match',function(&$req,$res,$next){
 });
 ```
 
-```injectablephp
+```php
 ROUTER::post('/url-to-match',function(&$req,$res,$next){
 //send
 $res->send('Some Text');
